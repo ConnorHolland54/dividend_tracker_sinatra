@@ -18,14 +18,15 @@ class ApplicationController < Sinatra::Base
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/success'
+      redirect '/stocks'
     else
       # Faillure
     end
   end
 
-  get '/success' do
+  get '/stocks' do
     if logged_in?
+      @stocks = fetch_stocks
       erb :home
     else
       redirect '/Login'
@@ -55,6 +56,11 @@ class ApplicationController < Sinatra::Base
 
 
   helpers do
+
+    def fetch_stocks
+      current_user.stocks
+    end
+
     def logged_in?
       !!session[:user_id]
     end

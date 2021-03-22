@@ -40,6 +40,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     diff-lcs (1.4.4)
+    dotenv (2.7.6)
     eventmachine (1.2.7)
     httparty (0.18.1)
       mime-types (~> 3.0)
@@ -129,6 +130,7 @@ DEPENDENCIES
   bcrypt
   capybara
   database_cleaner!
+  dotenv
   httparty
   pry
   rack-test
