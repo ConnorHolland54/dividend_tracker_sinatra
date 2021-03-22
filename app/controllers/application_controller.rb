@@ -10,8 +10,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    puts Api.get_info
-    binding.pry
     erb :login
   end
 
