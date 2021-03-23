@@ -17,13 +17,11 @@
   <body>
     <% if logged_in? %>
     <div class="topnav">
-      <a href="/home">Home</a>
-      <% if logged_in? %>
-        <a href="/login">Log out</a>
-      <% else %>
-        <a href="/signup">Sign Up</a>
-        <a href="/login">Log In</a>
-      <% end %>
+      <nav>
+        <a href="/stocks">Home</a>
+        <a href="/stocks/new">Add Stock</a>
+        <a href="/logout">Log out</a>
+      </nav>
     </div>
   <% end %>
 

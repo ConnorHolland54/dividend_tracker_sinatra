@@ -9,6 +9,10 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  get '/' do
+    erb :welcome
+  end
+
   get '/login' do
     erb :login
   end
@@ -21,15 +25,6 @@ class ApplicationController < Sinatra::Base
       redirect '/stocks'
     else
       # Faillure
-    end
-  end
-
-  get '/stocks' do
-    if logged_in?
-      @stocks = fetch_stocks
-      erb :home
-    else
-      redirect '/Login'
     end
   end
 
@@ -51,6 +46,8 @@ class ApplicationController < Sinatra::Base
     session.clear
     redirect '/login'
   end
+
+  # Add new stock to portfolio
 
 
 
