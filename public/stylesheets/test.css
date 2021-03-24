@@ -1,0 +1,8 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light{
+  background: blue;
+}
+a.green.navbar-brand {
+  color: green;
+  font-size: 22px;
+  margin: auto 10px;
+}

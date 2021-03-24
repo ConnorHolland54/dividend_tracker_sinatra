@@ -6,6 +6,6 @@ class Stock < ActiveRecord::Base
     user.stocks.each do |stock|
       amount += stock.shares * stock.dividend_per_share.to_i
     end
-    amount
+    return amount != nil ? amount : 0
   end
 end
