@@ -1,0 +1,14 @@
+.setup {
+  background-color: #add8e6;
+  background-image: url("/images/wallstreet.jpg");
+  background-size: cover;
+}
+
+.container-c {
+  line-height: 18px;
+  margin: 16px auto;
+  max-width: 90%;
+  padding: 2.25%; /* 18px / 800px */
+  width: 85%;
+  background-color: white;
+}

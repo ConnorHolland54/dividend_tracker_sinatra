@@ -1,0 +1,32 @@
+
+<link rel="stylesheet" href="/stylesheets/login.css" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+<div id="login">
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="/signup" method="post">
+                        <h3 class="text-center text-info">Welcome to Dividend Tracker!</h3>
+                        <h4 class="text-center text-info">Please sign up with a valid email and password!</h4>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Email:</label><br>
+                            <input type="text" name="email" id="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" id="loginBtn" name="submit" class="btn btn-info btn-md" value="Sign Up">
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <a href="/login" class="text-info">Back to Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

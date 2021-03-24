@@ -1,0 +1,26 @@
+table.table {
+  border: 2px solid black;
+  width: 90%;
+  margin: 5px auto;
+}
+
+div.updateForm {
+  margin: 16px auto;
+  margin-left: 16px;
+}
+
+thead {
+  text-align: center;
+}
+
+tbody {
+  text-align: center;
+}
+
+div.portfolio#port {
+  margin-top: 5px;
+}
+
+div.divAmount {
+  text-align: center;
+}

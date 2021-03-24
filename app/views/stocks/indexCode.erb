@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <script type="text/javascript">
+    function showUpdateForm() {
+      var x = document.getElementById("removeStock");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+  </script>
+
+    <h2>Your Portfolio:</h2>
+    <label for="">Update shares for a specific stock:</label>
+    <form class="" action="/stocks/update" method="post">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
+      <select class="" name="stock">
+      <% @stocks.each do |stock| %>
+        <option value="<%= stock.name %>"><%= stock.name %></option>
+      <% end %>
+      </select>
+      <label for="">Shares: <input type="number" name="value" value=""></label>
+      <input type="submit" name="" value="Update">
+    </form>
+
+    <div class="">
+      <table>
+        <tr>
+          <th>Symbol</th>
+          <th>Name</th>
+          <th>Shares</th>
+        </tr>
+        <% @stocks.each do |stock| %>
+        <tr>
+          <td><%= stock.symbol %></td>
+          <td><%= stock.name %></td>
+          <td><%= stock.shares %></td>
+          <td><form class="edit" action="/stocks/<%= stock.id %>" method="get">
+            <input type="submit" name="" value="Stock Info">
+          </form></td>
+          <td><form class="edit" action="/stocks/<%= stock.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" id="removeStock" name="" value="Remove">
+          </form></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="popUpForm" style="display:none" id="updateForm">
+      <form class="" action="index.html" method="post">
+        <input type="number" name="shares" value="">
+        <input type="submit" name="" value="Update">
+      </form>
+    </div>
+
+
+    <h2>Yearly Dividends: $<%= Stock.yearly_divs(current_user) %></h2>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

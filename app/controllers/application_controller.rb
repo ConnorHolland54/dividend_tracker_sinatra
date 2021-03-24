@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -7,56 +8,20 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "password_security"
     set :views, 'app/views'
-  end
-
-  get '/login' do
-    puts Api.get_info
-    binding.pry
-    erb :login
-  end
-
-  post '/login' do
-    user = User.find_by(:email => params[:email])
-
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect '/success'
-    else
-      # Faillure
-    end
-  end
-
-  get '/success' do
-    if logged_in?
-      erb :home
-    else
-      redirect '/Login'
-    end
-  end
-
-  get '/signup' do
-    erb :signup
-  end
-
-  post "/signup" do
-		user = User.new(:email => params[:email], :password => params[:password])
-
-		if user.save
-			redirect "/login"
-		else
-			redirect "/failure"
-		end
-	end
-
-  get '/logout' do
-    session.clear
-    redirect '/login'
+    use Rack::Flash, :sweep => true
   end
 
 
-
+  get '/' do
+    erb :welcome
+  end
 
   helpers do
+
+    def fetch_stocks
+      current_user.stocks
+    end
+
     def logged_in?
       !!session[:user_id]
     end
