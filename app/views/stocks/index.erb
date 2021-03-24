@@ -3,9 +3,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
 <div class="portfolio">
+  <h1>Portfolio:</h1>
   <div class="updateForm">
     <label for="">Update Shares:</label>
-    <form class="" action="/stocks/update" method="post">
+    <form class="" action="/stocks" method="post">
       <input id="hidden" type="hidden" name="_method" value="PATCH">
       <select class="" name="stock">
       <% @stocks.each do |stock| %>
@@ -13,7 +14,7 @@
       <% end %>
       </select>
       <label for="">Shares: <input type="number" name="value" value=""></label>
-      <input type="submit" name="" value="Update">
+      <input type="submit" class="btn btn-primary" name="" value="Update">
     </form>
   </div>
 

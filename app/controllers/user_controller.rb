@@ -11,7 +11,7 @@ class UserController < ApplicationController
       session[:user_id] = user.id
       redirect '/stocks'
     else
-      flash[:notice] = "Incorrect email or password!"
+      flash[:notice] = "Incorrect Email or Passsword"
       redirect '/login'
     end
   end

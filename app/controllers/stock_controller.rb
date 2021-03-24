@@ -17,9 +17,15 @@ class StockController < ApplicationController
   post '/stocks' do
     ticker = params[:ticker].upcase
     stock_info = Api.get_info(ticker)
+
+    if stock_info.empty?
+      flash[:notice] = "Stock does not exist!"
+      redirect '/stocks/new'
+    end
+
+
     stock = Stock.new(:symbol => stock_info['Symbol'], :name => stock_info["Name"], :description => stock_info["Description"], :dividend_per_share => stock_info["DividendPerShare"], :dividend_date => stock_info["DividendDate"], :ex_dividend_date => stock_info['ExDividendDate'], :shares => 0, :user_id => current_user.id)
-    user_stocks = current_user.stocks.map {|stock| stock.symbol}
-    if !user_stocks.include?(ticker)
+    if !current_user.stocks.find_by(:symbol => ticker)
       if stock.save
         redirect '/stocks'
       else
@@ -37,7 +43,7 @@ class StockController < ApplicationController
     erb :'stocks/show'
   end
 
-  patch '/stocks/update' do
+  patch '/stocks' do
     stock = current_user.stocks.find_by(:name => params[:stock])
     stock.shares = params[:value]
     stock.save
