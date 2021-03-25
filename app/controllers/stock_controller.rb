@@ -11,10 +11,12 @@ class StockController < ApplicationController
   end
 
   get '/stocks/new' do
+    redirect_if_not_logged_in
     erb :'stocks/new'
   end
 
   post '/stocks' do
+    redirect_if_not_logged_in
     ticker = params[:ticker].upcase
     stock_info = Api.get_info(ticker)
 
@@ -39,23 +41,24 @@ class StockController < ApplicationController
   end
 
   get '/stocks/:id' do
+    redirect_if_not_logged_in
     @stock = Stock.find(params[:id])
     erb :'stocks/show'
   end
 
   patch '/stocks' do
+    redirect_if_not_logged_in
     stock = current_user.stocks.find_by(:name => params[:stock])
     stock.shares = params[:value]
-    stock.save
+    stock.save if current_user.stocks.include?(stock)
     redirect '/stocks'
   end
 
   delete '/stocks/:id' do
+    redirect_if_not_logged_in
+    binding.pry
     stock = Stock.find(params[:id])
-    stock.destroy
+    stock.destroy if current_user.stocks.include?(stock)
     redirect '/stocks'
   end
-
-
-
 end
