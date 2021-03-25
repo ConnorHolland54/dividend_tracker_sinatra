@@ -50,14 +50,15 @@ class StockController < ApplicationController
     redirect_if_not_logged_in
     stock = current_user.stocks.find_by(:name => params[:stock])
     stock.shares = params[:value]
-    stock.save
+    stock.save if current_user.stocks.include?(stock)
     redirect '/stocks'
   end
 
   delete '/stocks/:id' do
     redirect_if_not_logged_in
+    binding.pry
     stock = Stock.find(params[:id])
-    stock.destroy
+    stock.destroy if current_user.stocks.include?(stock)
     redirect '/stocks'
   end
 end
